@@ -6,13 +6,8 @@ RepAssignment1
 ###Loading and Processing the data
 
 ```{r}
-#unzip("activity.zip")
+unzip("activity.zip")
 dataPA<- read.csv('Activity.csv', stringsAsFactors = FALSE)
-#d<-dataPA$date[1]
-#dd<-as.Date(d)
-#typeof(d);typeof(dd)
-#class(d);class(dd)
-#class(dataPA$steps[1])
 dataPA$Date <- as.Date(dataPA$date)
 ```
 
@@ -35,8 +30,6 @@ median(totalSteps, na.rm = TRUE)
 
 ###The average daily activity pattern
 ```{r}
-library(ggplot2)
-
 averageSteps<- aggregate(x=list(steps=dataPA$steps), by=list(interval=dataPA$interval),
                          FUN=mean, na.rm=TRUE)
 ggplot(averageSteps, aes(interval, steps))+geom_line()+xlab("5-minute interval")+ylab("average number of steps taken")
