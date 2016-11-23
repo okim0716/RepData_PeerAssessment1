@@ -1,5 +1,4 @@
 # RepAssignment1-Daily Activity
-Okja Kim  
 November 18, 2016  
 
 
@@ -40,7 +39,7 @@ totalSteps<- tapply(dataPA$steps, dataPA$Date, FUN = sum, na.rm=TRUE)
 qplot(totalSteps, binwidth=500, xlab = "Total number of steps taken per day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](PA1_template_files/figure-html/mean_median_total_steps-1.png)<!-- -->
 
 Mean total number of steps taken per day:
 
@@ -70,7 +69,7 @@ averageSteps<- aggregate(x=list(steps=dataPA$steps), by=list(interval=dataPA$int
 ggplot(averageSteps, aes(interval, steps))+geom_line()+xlab("5-minute interval")+ylab("average number of steps taken")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](PA1_template_files/figure-html/average_daily_activity-1.png)<!-- -->
 
 On average across all the days in the dataset, the 5-minute interval contains the maximum number of steps:
 
@@ -127,7 +126,7 @@ tSteps<- tapply(newDataPA$steps, newDataPA$date, FUN = sum)
 qplot(tSteps,binwidth=500, xlab = "Total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 Mean total number of steps taken per day:
 
@@ -170,5 +169,5 @@ ave<- aggregate(steps~interval+day, data = newDataPA, mean)
 ggplot(ave, aes(interval, steps))+geom_line()+facet_grid(day~.)+xlab("5-minute interval")+ylab("Number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 

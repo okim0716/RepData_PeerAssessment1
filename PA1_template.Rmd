@@ -1,11 +1,12 @@
 ---
 title: "RepAssignment1-Daily Activity"
-author: "Okja Kim"
 date: "November 18, 2016"
 output: 
   html_document:
     keep_md: true
 ---
+
+
 
 RepAssignment1
 ==============
@@ -14,21 +15,21 @@ RepAssignment1
 
 ###Loading and Processing the data
 
-```{r}
+```{r loading}
 unzip("activity.zip")
 dataPA<- read.csv('Activity.csv', stringsAsFactors = FALSE)
 dataPA$Date <- as.Date(dataPA$date)
 ```
 
 ###Mean and Median total number of steps taken per day
-```{r}
+```{r mean_median_total_steps}
 library(ggplot2)
 totalSteps<- tapply(dataPA$steps, dataPA$Date, FUN = sum, na.rm=TRUE)
 qplot(totalSteps, binwidth=500, xlab = "Total number of steps taken per day")
 ```
 
 Mean total number of steps taken per day:
-```{r}
+```{r }
 mean(totalSteps, na.rm = TRUE)
 ```
 
@@ -38,7 +39,7 @@ median(totalSteps, na.rm = TRUE)
 ```
 
 ###The average daily activity pattern
-```{r}
+```{r average_daily_activity}
 averageSteps<- aggregate(x=list(steps=dataPA$steps), by=list(interval=dataPA$interval),
                          FUN=mean, na.rm=TRUE)
 ggplot(averageSteps, aes(interval, steps))+geom_line()+xlab("5-minute interval")+ylab("average number of steps taken")
@@ -105,3 +106,4 @@ Making a panel plot containing a time series plot of the 5-minute interval amd t
 ave<- aggregate(steps~interval+day, data = newDataPA, mean)
 ggplot(ave, aes(interval, steps))+geom_line()+facet_grid(day~.)+xlab("5-minute interval")+ylab("Number of steps")
 ```
+
